@@ -5,7 +5,7 @@ from mlforecast import MLForecast
 import numpy as np
 import io
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 from pytz import timezone
 from datetime import date
 from utilities import calculate_reorder_point, check_reorder_alert, check_overstock_warning, get_filtered_total_forecast, get_forecast
@@ -138,7 +138,7 @@ forecast = None
 
 # Endpoint to forecast demand
 @app.post("/make-forecast/")
-async def predict_sku(sku_request: List[SKURequest], token: bool = Depends(verify_token)):
+async def predict_sku(sku_request: SKURequest, token: bool = Depends(verify_token)):
 
     # Make it available outside of this function for caching
     global forecast
@@ -148,7 +148,7 @@ async def predict_sku(sku_request: List[SKURequest], token: bool = Depends(verif
         raise HTTPException(status_code=400, detail="No train data uploaded. Please upload a CSV first.")
 
     # Convert SKURequest to DataFrame
-    new_sku = pd.DataFrame([sku_request.dict() for sku_request in sku_request])
+    new_sku = pd.DataFrame([sku_request.dict()])
 
     # Lowercase all the object columns
     obj_columns = new_sku.select_dtypes("object").columns[:-2]
