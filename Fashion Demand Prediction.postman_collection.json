@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "cc62979b-cb97-4d80-a3b4-bc1efb337f1d",
+		"name": "Fashion Demand Prediction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42517350"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "hashbin2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://34.172.217.151:8000/",
+					"protocol": "http",
+					"host": [
+						"34",
+						"172",
+						"217",
+						"151"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/upload-train-data/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "hashbin2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "///wsl.localhost/Ubuntu-22.04/home/faysal/projects/fashion-demand/Official Training Data - Test.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://34.172.217.151:8000/upload-train-data/",
+					"protocol": "http",
+					"host": [
+						"34",
+						"172",
+						"217",
+						"151"
+					],
+					"port": "8000",
+					"path": [
+						"upload-train-data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/make-forecast/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "hashbin2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sku\":\"162-2490\",\r\n    \"product_title\":\"Premium Leather Sandals - White\",\r\n    \"category\": \"footware\",\r\n    \"subcategory\":\"sandals\",\r\n    \"price\": 122,\r\n    \"material\":\"leather\",\r\n    \"gender_age\":\"women\",\r\n    \"lead_time\": 7, // default is 7\r\n    \"safety_stock\": 22, // default is 22\r\n    \"current_inventory\": 30, // Must be provided for new sku, must be present in the data for old sku\r\n    \"start_day\": \"2025-02-22\", // Optional, format is (yyyy-mm-dd), Make sure this matches with fortecast\r\n    \"end_day\": \"2025-02-27\" // Optional, format is (yyyy-mm-dd), Make sure this matches with fortecast\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.172.217.151:8000/make-forecast/",
+					"protocol": "http",
+					"host": [
+						"34",
+						"172",
+						"217",
+						"151"
+					],
+					"port": "8000",
+					"path": [
+						"make-forecast",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/download-forecast/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "hashbin2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://34.172.217.151:8000/download-forecast/",
+					"protocol": "http",
+					"host": [
+						"34",
+						"172",
+						"217",
+						"151"
+					],
+					"port": "8000",
+					"path": [
+						"download-forecast",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
