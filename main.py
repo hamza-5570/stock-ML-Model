@@ -34,10 +34,11 @@ product_data = None
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Or set your frontend domain here
+    allow_origins=["http://localhost:3000"],  # Or set your frontend domain here
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],  # 👈 This allows Authorization to be sent
+    allow_headers=["*"],
+    expose_headers=["Authorization"],  # 👈 This allows Authorization to be sent
 )
 
 # Input validation
