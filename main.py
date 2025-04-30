@@ -1,4 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from xgboost import XGBRegressor
 from mlforecast import MLForecast
@@ -31,6 +32,13 @@ product_data = None
 
 # Initialize FastAPI app
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or set your frontend domain here
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],  # 👈 This allows Authorization to be sent
+)
 
 # Input validation
 class SKURequest(BaseModel):
